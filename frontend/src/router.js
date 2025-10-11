@@ -13,6 +13,7 @@ export class Router {
                 route: '/',
                 title: 'Дашборд',
                 filePathTemplate: '/templates/dashboard.html',
+                useLayout: '/templates/layout.html',
                 load: () => {
                     new Dashboard();
                 }
@@ -21,11 +22,13 @@ export class Router {
                 route: '/404',
                 title: 'Страница не найдена',
                 filePathTemplate: '/templates/404.html',
+                useLayout: false,
             },
             {
                 route: '/login',
                 title: 'Авторизация',
                 filePathTemplate: '/templates/login.html',
+                useLayout: false,
                 load: () => {
                     new Login();
                 }
@@ -34,6 +37,7 @@ export class Router {
                 route: '/sign-up',
                 title: 'Регистрация',
                 filePathTemplate: '/templates/sign-up.html',
+                useLayout: false,
                 load: () => {
                     new SignUp();
                 }
@@ -56,7 +60,17 @@ export class Router {
             }
 
             if (newRoute.filePathTemplate) {
-                this.contentPageElement.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
+                let contentBlock = this.contentPageElement;
+                if (newRoute.useLayout) {
+                    this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
+                    contentBlock = document.getElementById('content-layout');
+                    document.body.classList.add('sidebar-mini');
+                    document.body.classList.add('sidebar-collapse');
+                } else {
+                    document.body.classList.remove('sidebar-mini');
+                    document.body.classList.remove('sidebar-collapse');
+                }
+                contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
             }
 
             if (newRoute.load && typeof newRoute.load === 'function') {
