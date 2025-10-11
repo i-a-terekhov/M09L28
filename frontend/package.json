@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/i-a-terekhov/M09L28-Control-21/issues"
   },
-  "homepage": "https://github.com/i-a-terekhov/M09L28-Control-21#readme"
+  "homepage": "https://github.com/i-a-terekhov/M09L28-Control-21#readme",
+  "dependencies": {
+    "admin-lte": "^4.0.0-rc3"
+  }
 }
