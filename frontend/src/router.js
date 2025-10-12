@@ -55,9 +55,41 @@ export class Router {
     initEvents() {
         window.addEventListener('DOMContentLoaded', this.activateRoute.bind(this));
         window.addEventListener('popstate', this.activateRoute.bind(this));
+        document.addEventListener('click', this.openNewRoute.bind(this));
     }
 
-    async activateRoute() {
+    async openNewRoute(e) {
+        let element = null;
+        if (e.target.nodeName === 'A') {
+            element = e.target;
+        } else if (e.target.parentNode.nodeName === "A") {
+            element = e.target.parentNode;
+        }
+
+        if (element) {
+            e.preventDefault();
+
+            const url = element.href.replace(window.location.origin, '');
+            if (!url || url === '/#' || url.startsWith('javascript: void(0)')) {
+                return;
+            }
+
+            const currentRoute = window.location.pathname;
+            history.pushState({}, '', url);
+            await this.activateRoute(null, currentRoute);
+        }
+    }
+
+    async activateRoute(e, oldRoute = null) {
+        if (oldRoute) {
+            const currentRoute = this.routes.find(item => item.route === oldRoute);
+            if (currentRoute.styles && currentRoute.styles.length > 0) {
+                currentRoute.styles.forEach(style => {
+                    document.querySelector(`link[href='/css/${style}']`).remove();
+                });
+            }
+        }
+
         const urlRoute = window.location.pathname;
         const newRoute = this.routes.find(item => item.route === urlRoute);
 
@@ -95,7 +127,8 @@ export class Router {
             }
         } else {
             console.log('No route found');
-            window.location = '/404';
+            history.pushState({}, '', '/404');
+            await this.activateRoute();
         }
     }
 
