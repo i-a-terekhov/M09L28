@@ -43,8 +43,11 @@ export class Router {
                 filePathTemplate: '/templates/sign-up.html',
                 useLayout: false,
                 load: () => {
+                    document.body.classList.add('register-page');
+                    document.body.style.height = '100vh';
                     new SignUp();
-                }
+                },
+                styles: ['icheck-bootstrap.min.css']
             },
         ]
     }
