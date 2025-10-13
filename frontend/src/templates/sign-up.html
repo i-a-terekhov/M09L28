@@ -6,54 +6,72 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Зарегистрировать нового пользователя</p>
-
+            <div class="error invalid-feedback text-center mb-3" id="common-error">Не удалось зарегистрировать
+                пользователя. Обратитесь в поддержку.
+            </div>
             <form>
                 <div class="input-group mb-3">
-                    <input class="form-control" placeholder="Имя" type="text">
+                    <input class="form-control" id="name" placeholder="Имя" type="text">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    <span class="error invalid-feedback" id="name-error">Заполните имя</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" id="last-name" placeholder="Фамилия" type="text">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                    <span class="error invalid-feedback" id="last-name-error">Заполните фамилию</span>
+                </div>
+                <div class="input-group mb-3">
+                    <input class="form-control" id="email" placeholder="Email" type="email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    <span class="error invalid-feedback" id="email-error">Введите корректный E-mail</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input class="form-control" placeholder="Пароль" type="password">
+                    <input class="form-control" id="password" placeholder="Пароль" type="password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span class="error invalid-feedback" id="password-error">Заполните пароль</span>
                 </div>
                 <div class="input-group mb-3">
-                    <input class="form-control" placeholder="Повторите пароль" type="password">
+                    <input class="form-control" id="password-repeat" placeholder="Повторите пароль" type="password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    <span class="error invalid-feedback" id="password-repeat-error">Пароль и повторение пароля должны совпадать</span>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="icheck-primary">
-                            <input id="remember" type="checkbox">
-                            <label for="remember">
+                            <input id="agree" type="checkbox">
+                            <label for="agree">
                                 Я согласен с <a href="javascript: void(0)">условиями</a>
                             </label>
+                            <span class="error invalid-feedback"
+                                  id="agree-error">Вам необходимо согласиться с условиями</span>
                         </div>
                     </div>
                     <!-- /.col -->
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">
-                        <button class="btn btn-primary btn-block" type="button">Зарегистрироваться</button>
+                        <button class="btn btn-primary btn-block" id="process-button" type="button">Зарегистрироваться
+                        </button>
                     </div>
                 </div>
             </form>
