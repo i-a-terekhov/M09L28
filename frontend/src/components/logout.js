@@ -1,4 +1,5 @@
 import {AuthUtils} from "../utils/auth-utils";
+import {HttpUtils} from "../utils/http-utils";
 
 export class Logout {
     constructor(openNewRoute) {
@@ -12,18 +13,9 @@ export class Logout {
     }
 
     async logout() {
-        const response = await fetch('http://localhost:3000/api/logout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-                refreshToken: localStorage.getItem("refreshToken"),
-            })
+        await HttpUtils.request('/logout', 'POST', {
+            refreshToken: AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey),
         });
-        const result = await response.json();
-        console.log(result);
 
         AuthUtils.removeAuthInfo();
 
