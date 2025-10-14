@@ -1,4 +1,4 @@
-@use "login";
+@use "freelancers";
 
 .sidebar {
   .image {
@@ -7,6 +7,7 @@
       font-size: 34px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
   }
 }
