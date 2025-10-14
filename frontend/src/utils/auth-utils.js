@@ -1,12 +1,16 @@
+import config from "../config/config";
+
 export class AuthUtils {
     static accessTokenKey = 'accessToken';
     static refreshTokenKey = 'refreshToken';
     static userInfoTokenKey = 'userInfo';
 
-    static setAuthInfo(accessToken, refreshToken, userInfo) {
+    static setAuthInfo(accessToken, refreshToken, userInfo = null) {
         localStorage.setItem(this.accessTokenKey, accessToken);
         localStorage.setItem(this.refreshTokenKey, refreshToken);
-        localStorage.setItem(this.userInfoTokenKey, JSON.stringify(userInfo));
+        if (userInfo) {
+            localStorage.setItem(this.userInfoTokenKey, JSON.stringify(userInfo));
+        }
     }
 
     static removeAuthInfo() {
@@ -25,7 +29,34 @@ export class AuthUtils {
                 [this.userInfoTokenKey]: localStorage.getItem(this.userInfoTokenKey),
             }
         }
+    }
 
+    static async updateRefreshToken() {
+        let result = false;
+        const refreshToken = this.getAuthInfo(this.refreshTokenKey);
+        if (refreshToken) {
+            const response = await fetch(config.api + '/refresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({refreshToken: refreshToken}),
+            });
+            if (response && response.status === 200) {
+                const tokens = await response.json();
+                if (tokens && !tokens.error) {
+                    this.setAuthInfo(tokens.accessToken, tokens.refreshToken);
+                    result = true;
+                }
+            }
+        }
+
+        if (!result) {
+            this.removeAuthInfo();
+        }
+
+        return result;
     }
 
 }
