@@ -1,5 +1,5 @@
-import {AuthUtils} from "../utils/auth-utils";
-import {HttpUtils} from "../utils/http-utils";
+import {AuthUtils} from "../../utils/auth-utils";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class Logout {
     constructor(openNewRoute) {
@@ -13,7 +13,7 @@ export class Logout {
     }
 
     async logout() {
-        await HttpUtils.request('/logout', 'POST', {
+        await HttpUtils.request('/logout', 'POST', false,{
             refreshToken: AuthUtils.getAuthInfo(AuthUtils.refreshTokenKey),
         });
 
