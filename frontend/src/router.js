@@ -95,7 +95,10 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new FreelancersCreate(this.openNewRoute.bind(this));
-                }
+                },
+                scripts: [
+                    'bs-custom-file-input.min.js'
+                ]
             },
         ]
     }
