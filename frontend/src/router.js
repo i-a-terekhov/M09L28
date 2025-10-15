@@ -94,7 +94,7 @@ export class Router {
                 filePathTemplate: '/templates/pages/freelancers/create.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new FreelancersCreate();
+                    new FreelancersCreate(this.openNewRoute.bind(this));
                 }
             },
         ]
