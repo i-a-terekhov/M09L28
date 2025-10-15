@@ -1,0 +1,79 @@
+<div class="freelancer">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Просмотр фрилансера</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="/freelancers">Фрилансеры</a></li>
+                        <li class="breadcrumb-item active">Профиль фрилансера</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" id="avatar"
+                                     src="" alt="User profile picture">
+                            </div>
+
+                            <h3 class="profile-username text-center" id="name"></h3>
+
+                            <p class="text-muted text-center">Фрилансер</p>
+
+                            <p class="text-muted text-center level" id="level"></p>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <a href="/freelancers/edit?id=" class="btn btn-warning w-100" id="edit-link">Редактировать</a>
+                    <a href="/freelancers/delete?id=" class="btn btn-danger mt-2 w-100" id="delete-link">Удалить</a>
+                </div>
+                <div class="col-md-9">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">О фрилансере</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <strong><i class="fas fa-envelope mr-1"></i> E-mail</strong>
+                            <p class="text-muted" id="email"></p>
+                            <hr>
+
+                            <strong><i class="fas fa-book mr-1"></i> образование</strong>
+                            <p class="text-muted" id="education"></p>
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Местонахождение</strong>
+                            <p class="text-muted" id="location"></p>
+                            <hr>
+
+                            <strong><i class="fas fa-pencil-alt mr-1"></i> Навыки</strong>
+                            <p class="text-muted" id="skills"></p>
+                            <hr>
+
+                            <strong><i class="fas fa-file-alt mr-1"></i> Информация</strong>
+                            <p class="text-muted" id="info"></p>
+                            <hr>
+
+                            <strong><i class="fas fa-clock mr-1"></i> Добавлен на платформу</strong>
+                            <p class="text-muted" id="created"></p>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

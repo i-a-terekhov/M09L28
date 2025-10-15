@@ -8,6 +8,7 @@ module.exports = {
     output: {
         filename: 'app.js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
     },
     devServer: {
         static: {
@@ -32,6 +33,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./index.html",
+            baseURL: "/",
         }),
         new CopyPlugin({
             patterns: [
