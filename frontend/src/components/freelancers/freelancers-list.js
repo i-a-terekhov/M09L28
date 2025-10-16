@@ -1,5 +1,4 @@
 import {HttpUtils} from "../../utils/http-utils";
-import {AuthUtils} from "../../utils/auth-utils";
 import config from "../../config/config";
 import {CommonUtils} from "../../utils/common-utils";
 
@@ -54,15 +53,5 @@ export class FreelancersList {
                 },
             }
         });
-
-        // $('#example2').DataTable({
-        //     "paging": true,
-        //     "lengthChange": false,
-        //     "searching": false,
-        //     "ordering": true,
-        //     "info": true,
-        //     "autoWidth": false,
-        //     "responsive": true,
-        // });
     }
 }

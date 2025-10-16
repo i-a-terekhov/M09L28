@@ -7,6 +7,12 @@ const config = {
         middle: 'middle',
         senior: 'senior',
     },
+    orderStatuses: {
+        new: 'new',
+        confirmed: 'confirmed',
+        success: 'success',
+        canceled: 'canceled',
+    },
 }
 
 export default config;
