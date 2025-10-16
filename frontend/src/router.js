@@ -9,6 +9,7 @@ import {FreelancersCreate} from "./components/freelancers/freelancers-create";
 import {FreelancersEdit} from "./components/freelancers/freelancers-edit";
 import {FreelancersDelete} from "./components/freelancers/freelancers-delete";
 import {OrdersList} from "./components/orders/orders-list";
+import {OrdersView} from "./components/orders/orders-view";
 
 export class Router {
     constructor() {
@@ -131,6 +132,15 @@ export class Router {
                 },
                 styles: ['dataTables.bootstrap4.min.css'],
                 scripts: ['jquery.dataTables.min.js', 'dataTables.bootstrap4.min.js']
+            },
+            {
+                route: '/orders/view',
+                title: 'Заказ',
+                filePathTemplate: '/templates/pages/orders/view.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new OrdersView(this.openNewRoute.bind(this));
+                }
             },
         ];
     }
