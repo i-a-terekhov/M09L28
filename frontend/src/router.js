@@ -6,6 +6,7 @@ import {FreelancersList} from "./components/freelancers/freelancers-list";
 import {FileUtils} from "./utils/file-utils";
 import {FreelancersView} from "./components/freelancers/freelancers-view";
 import {FreelancersCreate} from "./components/freelancers/freelancers-create";
+import {FreelancersEdit} from "./components/freelancers/freelancers-edit";
 
 export class Router {
     constructor() {
@@ -100,7 +101,19 @@ export class Router {
                     'bs-custom-file-input.min.js'
                 ]
             },
-        ]
+            {
+                route: '/freelancers/edit',
+                title: 'Редактирование фрилансера',
+                filePathTemplate: '/templates/pages/freelancers/edit.html',
+                useLayout: '/templates/layout.html',
+                load: () => {
+                    new FreelancersEdit(this.openNewRoute.bind(this));
+                },
+                scripts: [
+                    'bs-custom-file-input.min.js'
+                ]
+            },
+        ];
     }
 
     initEvents() {

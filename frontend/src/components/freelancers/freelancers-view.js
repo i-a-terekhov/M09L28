@@ -48,6 +48,6 @@ export class FreelancersView {
             document.getElementById('created').innerText = date.toLocaleString('ru-RU');
         }
 
-        document.getElementById('level').innerHTML = CommonUtils.getLevelHtml(freelancer.level)
+        document.getElementById('level').innerHTML = CommonUtils.getLevelHtml(freelancer.level);
     }
 }
