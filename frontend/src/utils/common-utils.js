@@ -21,24 +21,39 @@ export class CommonUtils {
     }
 
     static getStatusInfo(status) {
-        let statusHtml = null;
-        switch (status) {
-            case config.orderStatuses.new:
-                statusHtml = '<span class="badge badge-secondary">Новый</span>'
-                break;
-            case config.orderStatuses.confirmed:
-                statusHtml = '<span class="badge badge-info">Подтвержден</span>'
-                break;
-            case config.orderStatuses.success:
-                statusHtml = '<span class="badge badge-success">Выполнен</span>'
-                break;
-            case config.orderStatuses.canceled:
-                statusHtml = '<span class="badge badge-danger">Отменен</span>'
-                break;
-            default:
-                statusHtml = '<span class="badge badge-secondary">Неизвестно</span>'
+        const info = {
+            name: '',
+            color: '',
+            icon: ''
         }
 
-        return statusHtml;
+        switch (status) {
+            case config.orderStatuses.new:
+                info.name = 'Новый';
+                info.color = 'secondary';
+                info.icon = 'star';
+                break;
+            case config.orderStatuses.confirmed:
+                info.name = 'Подтвержден';
+                info.color = 'info';
+                info.icon = 'eye';
+                break;
+            case config.orderStatuses.success:
+                info.name = 'Выполнен';
+                info.color = 'success';
+                info.icon = 'check';
+                break;
+            case config.orderStatuses.canceled:
+                info.name = 'Отменен';
+                info.color = 'danger';
+                info.icon = 'times';
+                break;
+            default:
+                info.name = 'Неизвестно';
+                info.color = 'secondary';
+                info.icon = 'times';
+        }
+
+        return info;
     }
 }
