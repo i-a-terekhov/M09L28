@@ -1,0 +1,138 @@
+<div class="order-edit">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Создать новый заказ</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="/orders">Заказы</a></li>
+                        <li class="breadcrumb-item active">Создание</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Создание нового заказа</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                   <div class="form-group row">
+                       <div class="col-sm-3">
+                           <label for="amountInput" class="col-form-label">Сумма</label>
+                       </div>
+                       <div class="col-sm-9">
+                           <input type="text" class="form-control" id="amountInput" placeholder="Сумма">
+                           <span class="error invalid-feedback" id="amountInput-error">Заполните поле</span>
+                       </div>
+                   </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label for="descriptionInput" class="col-form-label">Описание</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="descriptionInput" placeholder="Описание"></textarea>
+                            <span class="error invalid-feedback" id="descriptionInput-error">Заполните поле</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label for="statusSelect" class="col-form-label">Статус</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="statusSelect">
+                                <option value="new" selected>Новый</option>
+                                <option value="confirmed">Подтвержден</option>
+                                <option value="success">Выполнен</option>
+                                <option value="canceled">Отменен</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label for="freelancerSelect" class="col-form-label">Исполнитель</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="freelancerSelect">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card bg-gradient-info">
+                                <div class="card-header border-0">
+
+                                    <h3 class="card-title">
+                                        <i class="far fa-calendar-alt"></i>
+                                        Запланированная дата выполнения
+                                    </h3>
+                                    <!-- tools card -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body pt-0">
+                                    <!--The calendar -->
+                                    <div id="calendar-scheduled" style="width: 100%"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card bg-gradient-success">
+                                <div class="card-header border-0">
+
+                                    <h3 class="card-title">
+                                        <i class="far fa-calendar-alt"></i>
+                                        Дата исполнения (не обязательно)
+                                    </h3>
+                                    <!-- tools card -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body pt-0">
+                                    <!--The calendar -->
+                                    <div id="calendar-complete" style="width: 100%"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card bg-gradient-warning">
+                                <div class="card-header border-0">
+
+                                    <h3 class="card-title">
+                                        <i class="far fa-calendar-alt"></i>
+                                        Дата дедлайна
+                                    </h3>
+                                    <!-- tools card -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body pt-0">
+                                    <!--The calendar -->
+                                    <div id="calendar-deadline" style="width: 100%"></div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="w-100 text-center">
+                            <button type="button" class="btn btn-danger" id="saveButton">Сохранить</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+
+</div>
