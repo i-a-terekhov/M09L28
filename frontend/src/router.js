@@ -29,7 +29,15 @@ export class Router {
                 useLayout: '/templates/layout.html',
                 load: () => {
                     new Dashboard();
-                }
+                },
+                scripts: [
+                    'moment.min.js',
+                    'moment-ru-locale.js',
+                    'fullcalendar.js',
+                ],
+                styles: [
+                    'fullcalendar.css'
+                ]
             },
             {
                 route: '/404',
