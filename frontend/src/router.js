@@ -28,12 +28,13 @@ export class Router {
                 filePathTemplate: '/templates/pages/dashboard.html',
                 useLayout: '/templates/layout.html',
                 load: () => {
-                    new Dashboard();
+                    new Dashboard(this.openNewRoute.bind(this));
                 },
                 scripts: [
                     'moment.min.js',
                     'moment-ru-locale.js',
                     'fullcalendar.js',
+                    'fullcalendar-locale-ru.js'
                 ],
                 styles: [
                     'fullcalendar.css'

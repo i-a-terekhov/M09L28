@@ -12,3 +12,11 @@
     }
   }
 }
+
+.fc-daygrid-event {
+  white-space: normal;
+}
+
+.fc-daygrid-block-event .fc-event-time, .fc-daygrid-block-event .fc-event-title {
+  padding: 3px;
+}

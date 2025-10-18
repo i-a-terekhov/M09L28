@@ -58,6 +58,7 @@ module.exports = {
                 {from: "./node_modules/admin-lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css", to: "css"},
                 {from: "./node_modules/admin-lte/plugins/fullcalendar/main.js", to: "js/fullcalendar.js"},
                 {from: "./node_modules/admin-lte/plugins/fullcalendar/main.css", to: "css/fullcalendar.css"},
+                {from: "./node_modules/admin-lte/plugins/fullcalendar/locales/ru.js", to: "js/fullcalendar-locale-ru.js"},
             ],
         }),
     ],
