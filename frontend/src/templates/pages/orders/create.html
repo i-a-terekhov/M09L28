@@ -30,7 +30,7 @@
                            <label for="amountInput" class="col-form-label">Сумма</label>
                        </div>
                        <div class="col-sm-9">
-                           <input type="text" class="form-control" id="amountInput" placeholder="Сумма">
+                           <input type="number" class="form-control" id="amountInput" placeholder="Сумма">
                            <span class="error invalid-feedback" id="amountInput-error">Заполните поле</span>
                        </div>
                    </div>
@@ -68,7 +68,7 @@
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <div class="card bg-gradient-info">
+                            <div class="card bg-gradient-info" id="scheduled-card">
                                 <div class="card-header border-0">
 
                                     <h3 class="card-title">
@@ -84,9 +84,10 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            <span class="error text-center invalid-feedback" id="scheduled-card-error">Выберете дату</span>
                         </div>
                         <div class="col-sm-4">
-                            <div class="card bg-gradient-success">
+                            <div class="card bg-gradient-success" id="complete-card">
                                 <div class="card-header border-0">
 
                                     <h3 class="card-title">
@@ -104,7 +105,7 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="card bg-gradient-warning">
+                            <div class="card bg-gradient-warning" id="deadline-card">
                                 <div class="card-header border-0">
 
                                     <h3 class="card-title">
@@ -120,6 +121,7 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            <span class="error text-center invalid-feedback" id="deadline-card-error">Выберете дату</span>
                         </div>
                     </div>
 

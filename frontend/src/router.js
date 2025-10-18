@@ -154,10 +154,13 @@ export class Router {
                 scripts: [
                     'moment.min.js',
                     'moment-ru-locale.js',
-                    'tempusdominus-bootstrap-4.min.js'
+                    'tempusdominus-bootstrap-4.min.js',
+                    'select2.full.min.js'
                 ],
                 styles: [
-                    'tempusdominus-bootstrap-4.min.css'
+                    'tempusdominus-bootstrap-4.min.css',
+                    'select2.min.css',
+                    'select2-bootstrap4.min.css'
                 ]
             },
         ];
