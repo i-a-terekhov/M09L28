@@ -281,6 +281,7 @@ export class Router {
                     contentBlock = document.getElementById('content-layout');
                     document.body.classList.add('sidebar-mini');
                     document.body.classList.add('sidebar-collapse');
+                    this.activateMenuItem(newRoute);
                 } else {
                     document.body.classList.remove('sidebar-mini');
                     document.body.classList.remove('sidebar-collapse');
@@ -296,6 +297,17 @@ export class Router {
             history.pushState({}, '', '/404');
             await this.activateRoute();
         }
+    }
+
+    activateMenuItem(route) {
+        document.querySelectorAll('.sidebar .nav-link').forEach(item => {
+            const href = item.getAttribute('href');
+            if ((route.route.includes(href) && href !== '/') || (route.route === '/' && href === '/')) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
     }
 
 }
