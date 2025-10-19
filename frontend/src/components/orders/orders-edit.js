@@ -1,4 +1,6 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {ValidationUtils} from "../../utils/validation-utils";
+
 
 
 export class OrdersEdit {
@@ -25,7 +27,10 @@ export class OrdersEdit {
         this.scheduledCardElement = document.getElementById('scheduled-card');
         this.completeCardElement = document.getElementById('complete-card');
         this.deadlineCardElement = document.getElementById('deadline-card');
-
+        this.validations = [
+            {element: this.descriptinInputElement},
+            {element: this.amountInputElement},
+        ];
         this.init(id).then();
     }
 
@@ -144,30 +149,12 @@ export class OrdersEdit {
         });
     }
 
-    validateForm() {
-        let isValid = true;
-
-        let textInputArray = [this.descriptionInputElement, this.amountInputElement]
-
-        for (let i = 0; i < textInputArray.length; i++) {
-            if (textInputArray[i].value) {
-                textInputArray[i].classList.remove("is-invalid");
-            } else {
-                textInputArray[i].classList.add("is-invalid");
-                isValid = false;
-            }
-        }
-
-        return isValid;
-    }
-
     async updateOrder(e) {
         e.preventDefault();
 
-        if (this.validateForm()) {
+        if (ValidationUtils.validateForm(this.validations)) {
 
             const changedData = {}
-
             if (parseInt(this.amountInputElement.value) !== parseInt(this.orderOriginalData.amount)) {
                 changedData.amount = parseInt(this.amountInputElement.value);
             }

@@ -1,5 +1,6 @@
 import {AuthUtils} from "../../utils/auth-utils";
 import {HttpUtils} from "../../utils/http-utils";
+import {ValidationUtils} from "../../utils/validation-utils";
 
 export class Login {
     constructor(openNewRoute) {
@@ -14,33 +15,17 @@ export class Login {
         this.rememberMeElement = document.getElementById("remember-me");
         this.commonErrorElement = document.getElementById("common-error");
 
+        this.validations = [
+            {element: this.passwordElement},
+            {element: this.emailElement, options: {pattern: /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/}},
+        ];
+
         document.getElementById("process-button").addEventListener("click", this.login.bind(this));
-    }
-
-
-    validateForm() {
-        let isValid = true;
-
-        if (this.emailElement.value && this.emailElement.value.match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)) {
-            this.emailElement.classList.remove("is-invalid");
-        } else {
-            this.emailElement.classList.add("is-invalid");
-            isValid = false;
-        }
-
-        if (this.passwordElement.value) {
-            this.passwordElement.classList.remove("is-invalid");
-        } else {
-            this.passwordElement.classList.add("is-invalid");
-            isValid = false;
-        }
-
-        return isValid;
     }
 
     async login() {
         this.commonErrorElement.style.display = "none";
-        if (this.validateForm()) {
+        if (ValidationUtils.validateForm(this.validations)) {
 
             const result = await HttpUtils.request('/login', 'POST', false, {
                 email: this.emailElement.value,
