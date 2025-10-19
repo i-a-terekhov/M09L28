@@ -1,11 +1,10 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {UrlUtils} from "../../utils/url-utils";
 
 export class OrdersDelete {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
-        const urlParams = new URLSearchParams(window.location.search);
-
-        const id = urlParams.get('id');
+        const id = UrlUtils.getUrlParam('id');
         if (!id) {
             return this.openNewRoute('/');
         }

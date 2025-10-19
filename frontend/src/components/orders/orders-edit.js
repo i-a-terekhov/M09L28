@@ -1,15 +1,15 @@
 import {HttpUtils} from "../../utils/http-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
+import {UrlUtils} from "../../utils/url-utils";
+
 
 
 
 export class OrdersEdit {
-
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
+        const id = UrlUtils.getUrlParam('id');
         if (!id) {
             return this.openNewRoute('/');
         }

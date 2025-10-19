@@ -3,13 +3,12 @@ import config from "../../config/config";
 import {CommonUtils} from "../../utils/common-utils";
 import {FileUtils} from "../../utils/file-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
+import {UrlUtils} from "../../utils/url-utils";
 
 export class FreelancersEdit {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
-        const urlParams = new URLSearchParams(window.location.search);
-
-        const id = urlParams.get('id');
+        const id = UrlUtils.getUrlParam('id');
         if (!id) {
             return this.openNewRoute('/');
         }
