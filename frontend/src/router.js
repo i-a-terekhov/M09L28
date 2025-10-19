@@ -280,11 +280,11 @@ export class Router {
                     this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
                     contentBlock = document.getElementById('content-layout');
                     document.body.classList.add('sidebar-mini');
-                    document.body.classList.add('sidebar-collapse');
+                    // document.body.classList.add('sidebar-collapse');
                     this.activateMenuItem(newRoute);
                 } else {
                     document.body.classList.remove('sidebar-mini');
-                    document.body.classList.remove('sidebar-collapse');
+                    // document.body.classList.remove('sidebar-collapse');
                 }
                 contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
             }
