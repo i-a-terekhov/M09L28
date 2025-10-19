@@ -3,8 +3,6 @@ import {ValidationUtils} from "../../utils/validation-utils";
 import {UrlUtils} from "../../utils/url-utils";
 
 
-
-
 export class OrdersEdit {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
@@ -20,18 +18,20 @@ export class OrdersEdit {
         this.deadlineDate = null;
         this.completeDate = null;
 
+        this.findElements();
+
+        this.validations = [
+            {element: this.descriptionInputElement},
+            {element: this.amountInputElement},
+        ];
+        this.init(id).then();
+    }
+
+    findElements() {
         this.freelancersSelectElement = document.getElementById('freelancerSelect');
         this.statusSelectElement = document.getElementById('statusSelect');
         this.descriptionInputElement = document.getElementById('descriptionInput');
         this.amountInputElement = document.getElementById('amountInput');
-        this.scheduledCardElement = document.getElementById('scheduled-card');
-        this.completeCardElement = document.getElementById('complete-card');
-        this.deadlineCardElement = document.getElementById('deadline-card');
-        this.validations = [
-            {element: this.descriptinInputElement},
-            {element: this.amountInputElement},
-        ];
-        this.init(id).then();
     }
 
     async init(id) {
