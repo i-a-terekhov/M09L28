@@ -310,7 +310,7 @@ export class Router {
         } else {
             console.log('No route found');
             history.pushState({}, '', '/404');
-            await this.activateRoute();
+            await this.activateRoute(null);
         }
     }
 

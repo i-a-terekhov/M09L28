@@ -1,7 +1,6 @@
 import {HttpUtils} from "../../utils/http-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
 
-
 export class OrdersCreate {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
@@ -12,43 +11,32 @@ export class OrdersCreate {
         this.deadlineDate = null;
         this.completeDate = null;
 
-        const calendarScheduled = $('#calendar-scheduled');
-        calendarScheduled.datetimepicker({
+        const calendarOptions = {
             inline: true,
             locale: 'ru',
             icons: {
                 time: 'far fa-clock',
             },
             useCurrent: false,
-        });
+        };
+
+        const calendarScheduled = $('#calendar-scheduled');
+        calendarScheduled.datetimepicker(calendarOptions);
         calendarScheduled.on("change.datetimepicker", (e) => {
             this.scheduledDate = e.date;
         });
+
         const calendarDeadline = $('#calendar-deadline');
-        calendarDeadline.datetimepicker({
-            inline: true,
-            locale: 'ru',
-            icons: {
-                time: 'far fa-clock',
-            },
-            useCurrent: false,
-        });
+        calendarDeadline.datetimepicker(calendarOptions);
         calendarDeadline.on("change.datetimepicker", (e) => {
             this.deadlineDate = e.date;
         });
 
         const calendarComplete = $('#calendar-complete');
-        calendarComplete.datetimepicker({
-            inline: true,
-            locale: 'ru',
-            icons: {
-                time: 'far fa-clock',
-            },
-            buttons: {
-                showClear: true,
-            },
-            useCurrent: false,
-        });
+        calendarOptions.buttons = {
+            showClear: true,
+        };
+        calendarComplete.datetimepicker(calendarOptions);
         calendarComplete.on("change.datetimepicker", (e) => {
             this.completeDate = e.date;
         });

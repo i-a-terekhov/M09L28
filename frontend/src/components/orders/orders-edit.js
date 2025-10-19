@@ -2,7 +2,6 @@ import {HttpUtils} from "../../utils/http-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
 import {UrlUtils} from "../../utils/url-utils";
 
-
 export class OrdersEdit {
     constructor(openNewRoute) {
         this.openNewRoute = openNewRoute;
@@ -98,46 +97,34 @@ export class OrdersEdit {
             }
         }
 
-        const calendarScheduled = $('#calendar-scheduled');
-        calendarScheduled.datetimepicker({
+        const calendarOptions = {
             inline: true,
             locale: 'ru',
             icons: {
                 time: 'far fa-clock',
             },
             useCurrent: false,
-            date: order.scheduledDate,
-        });
+        }
+
+        const calendarScheduled = $('#calendar-scheduled');
+        calendarScheduled.datetimepicker(Object.assign({}, calendarOptions, {date: order.scheduledDate}));
         calendarScheduled.on("change.datetimepicker", (e) => {
             this.scheduledDate = e.date;
         });
+
         const calendarDeadline = $('#calendar-deadline');
-        calendarDeadline.datetimepicker({
-            inline: true,
-            locale: 'ru',
-            icons: {
-                time: 'far fa-clock',
-            },
-            useCurrent: false,
-            date: order.deadlineDate,
-        });
+        calendarDeadline.datetimepicker(Object.assign({}, calendarOptions, {date: order.deadlineDate}));
         calendarDeadline.on("change.datetimepicker", (e) => {
             this.deadlineDate = e.date;
         });
 
         const calendarComplete = $('#calendar-complete');
-        calendarComplete.datetimepicker({
-            inline: true,
-            locale: 'ru',
-            icons: {
-                time: 'far fa-clock',
-            },
+        calendarComplete.datetimepicker(Object.assign({}, calendarOptions, {
+            date: order.completeDate,
             buttons: {
                 showClear: true,
-            },
-            useCurrent: false,
-            date: order.completeDate,
-        });
+            }
+        }));
         calendarComplete.on("change.datetimepicker", (e) => {
             if (e.date) {
                 this.completeDate = e.date

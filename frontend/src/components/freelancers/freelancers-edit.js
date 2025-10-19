@@ -128,7 +128,6 @@ export class FreelancersEdit {
 
                 return this.openNewRoute("/freelancers/view?id=" + this.freelancerOriginalData.id);
             }
-
         }
     }
 

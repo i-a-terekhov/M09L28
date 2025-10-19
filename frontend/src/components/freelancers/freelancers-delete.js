@@ -25,5 +25,4 @@ export class FreelancersDelete {
 
         return this.openNewRoute("/freelancers");
     }
-
 }
