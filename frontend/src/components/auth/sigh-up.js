@@ -10,13 +10,7 @@ export class SignUp {
             return this.openNewRoute('/');
         }
 
-        this.nameElement = document.getElementById("name");
-        this.lastNameElement = document.getElementById("last-name");
-        this.emailElement = document.getElementById("email");
-        this.passwordElement = document.getElementById("password");
-        this.passwordRepeatElement = document.getElementById("password-repeat");
-        this.agreeElement = document.getElementById("agree");
-        this.commonErrorElement = document.getElementById("common-error");
+        this.findElements();
 
         this.validations = [
             {element: this.nameElement},
@@ -28,6 +22,16 @@ export class SignUp {
         ];
 
         document.getElementById("process-button").addEventListener("click", this.signUp.bind(this));
+    }
+
+    findElements() {
+        this.nameElement = document.getElementById("name");
+        this.lastNameElement = document.getElementById("last-name");
+        this.emailElement = document.getElementById("email");
+        this.passwordElement = document.getElementById("password");
+        this.passwordRepeatElement = document.getElementById("password-repeat");
+        this.agreeElement = document.getElementById("agree");
+        this.commonErrorElement = document.getElementById("common-error");
     }
 
     async signUp() {
@@ -50,7 +54,10 @@ export class SignUp {
                 return;
             }
 
-            AuthUtils.setAuthInfo(result.response.accessToken, result.response.refreshToken, {id: result.response.id, name: result.response.name});
+            AuthUtils.setAuthInfo(result.response.accessToken, result.response.refreshToken, {
+                id: result.response.id,
+                name: result.response.name
+            });
 
             this.openNewRoute('/');
         }
