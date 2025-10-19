@@ -1,5 +1,5 @@
-
 import {HttpUtils} from "../../utils/http-utils";
+import {UrlUtils} from "../../utils/url-utils";
 
 export class FreelancersDelete {
     constructor(openNewRoute) {

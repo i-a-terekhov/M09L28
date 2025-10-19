@@ -32,11 +32,7 @@ export class OrdersList {
             const statusInfo = CommonUtils.getStatusInfo(orders[i].status);
             trElement.insertCell().innerHTML = '<span class="badge badge-' + statusInfo.color + '">' + statusInfo.name + '</span>'
             trElement.insertCell().innerText = orders[i].completeDate ? (new Date(orders[i].completeDate)).toLocaleString('ru-RU') : '';
-            trElement.insertCell().innerHTML = '<div class="order-tools">' +
-                '<a href="/orders/view?id=' + orders[i].id + '" class="fas fa-eye"></a>' +
-                '<a href="/orders/edit?id=' + orders[i].id + '" class="fas fa-edit"></a>' +
-                '<a href="/orders/delete?id=' + orders[i].id + '" class="fas fa-trash"></a>' +
-                '</div>';
+            trElement.insertCell().innerHTML = CommonUtils.generateGridToolsColumn('orders', orders[i].id);
 
             recordsElement.appendChild(trElement);
         }
