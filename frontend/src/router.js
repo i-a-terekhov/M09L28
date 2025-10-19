@@ -13,12 +13,14 @@ import {OrdersView} from "./components/orders/orders-view";
 import {OrdersCreate} from "./components/orders/orders-create";
 import {OrdersEdit} from "./components/orders/orders-edit";
 import {OrdersDelete} from "./components/orders/orders-delete";
+import {AuthUtils} from "./utils/auth-utils";
 
 export class Router {
     constructor() {
         this.titlePageElement = document.getElementById("title");
         this.contentPageElement = document.getElementById("content");
         this.adminLteStyleElement = document.getElementById("adminlte_style");
+        this.userName = null;
 
         this.initEvents();
         this.routes = [
@@ -280,11 +282,24 @@ export class Router {
                     this.contentPageElement.innerHTML = await fetch(newRoute.useLayout).then(response => response.text());
                     contentBlock = document.getElementById('content-layout');
                     document.body.classList.add('sidebar-mini');
-                    // document.body.classList.add('sidebar-collapse');
+                    document.body.classList.add('sidebar-fixed');
+
+                    this.profileNameElement = document.getElementById('profile-name');
+                    if (!this.userName) {
+                        let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey);
+                        if (userInfo) {
+                            userInfo = JSON.parse(userInfo);
+                            if (userInfo.name) {
+                                this.userName = userInfo.name;
+                            }
+                        }
+                    }
+                    this.profileNameElement.innerText = this.userName;
+
                     this.activateMenuItem(newRoute);
                 } else {
                     document.body.classList.remove('sidebar-mini');
-                    // document.body.classList.remove('sidebar-collapse');
+                    document.body.classList.remove('sidebar-fixed');
                 }
                 contentBlock.innerHTML = await fetch(newRoute.filePathTemplate).then(response => response.text());
             }
