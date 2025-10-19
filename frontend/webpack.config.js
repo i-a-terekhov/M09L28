@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/app.js',
@@ -31,6 +32,7 @@ module.exports = {
         ],
     },
     plugins: [
+        new Dotenv(),
         new HtmlWebpackPlugin({
             template: "./index.html",
             baseURL: "/",
@@ -59,6 +61,7 @@ module.exports = {
                 {from: "./node_modules/admin-lte/plugins/fullcalendar/main.js", to: "js/fullcalendar.js"},
                 {from: "./node_modules/admin-lte/plugins/fullcalendar/main.css", to: "css/fullcalendar.css"},
                 {from: "./node_modules/admin-lte/plugins/fullcalendar/locales/ru.js", to: "js/fullcalendar-locale-ru.js"},
+                {from: "./.env", to: "./"},
             ],
         }),
     ],
