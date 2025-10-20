@@ -1,6 +1,6 @@
-import {HttpUtils} from "../../utils/http-utils";
 import {FileUtils} from "../../utils/file-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
+import {FreelancersService} from "../../services/freelancers-service";
 
 export class FreelancersCreate {
     constructor(openNewRoute) {
@@ -52,17 +52,14 @@ export class FreelancersCreate {
                 createData.avatarBase64 = await FileUtils.convertFileToBase64(this.avatarInputElement.files[0]);
             }
 
-            const result = await HttpUtils.request('/freelancers', "POST", true, createData);
-            if (result.redirect) {
-                return this.openNewRoute(result.redirect);
+            const response = await FreelancersService.createFreelancer(createData);
+
+            if (response.error) {
+                alert(response.error);
+                return response.redirect ? this.openNewRoute(response.redirect) : null;
             }
 
-            if (result.error || !result.response || (result.response && result.response.error)) {
-                console.log(result.response.message);
-                return alert('Возникла ошибка при добавлении фрилансера. Обратитесь в поддержку');
-            }
-
-            return this.openNewRoute("/freelancers/view?id=" + result.response.id);
+            return this.openNewRoute("/freelancers/view?id=" + response.id);
         }
     }
 }
