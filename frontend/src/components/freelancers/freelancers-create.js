@@ -62,4 +62,5 @@ export class FreelancersCreate {
             return this.openNewRoute("/freelancers/view?id=" + response.id);
         }
     }
+
 }

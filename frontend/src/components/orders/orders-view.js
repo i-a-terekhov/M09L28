@@ -1,7 +1,7 @@
-import {HttpUtils} from "../../utils/http-utils";
 import config from "../../config/config";
 import {CommonUtils} from "../../utils/common-utils";
 import {UrlUtils} from "../../utils/url-utils";
+import {OrdersService} from "../../services/orders-services";
 
 export class OrdersView {
     constructor(openNewRoute) {
@@ -18,16 +18,14 @@ export class OrdersView {
     }
 
     async getOrder(id) {
-        const result = await HttpUtils.request('/orders/' + id);
-        if (result.redirect) {
-            return this.openNewRoute(result.redirect);
+        const response = await OrdersService.getOrder(id);
+
+        if (response.error) {
+            alert(response.error);
+            return response.redirect ? this.openNewRoute(response.redirect) : null;
         }
 
-        if (result.error || !result.response || (result.response && result.response.error)) {
-            return alert('Возникла ошибка при запросе заказа. Обратитесь в поддержку');
-        }
-
-        this.showOrder(result.response);
+        this.showOrder(response.order);
     }
 
     showOrder(order) {

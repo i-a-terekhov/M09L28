@@ -1,58 +1,58 @@
 import {HttpUtils} from "../utils/http-utils";
 
-export class FreelancersService {
-    static async getFreelancers() {
+export class OrdersService {
+    static async getOrders() {
         const returnObject = {
             error: false,
             redirect: null,
-            freelancers: null,
+            orders: null,
         };
 
-        const result = await HttpUtils.request('/freelancers');
+        const result = await HttpUtils.request('/orders');
 
-        if (result.redirect || result.error || !result.response || (result.response && (result.response.error || !result.response.freelancers))) {
-            returnObject.error = 'Возникла ошибка при запросе фрилансеров. Обратитесь в поддержку';
+        if (result.redirect || result.error || !result.response || (result.response && (result.response.error || !result.response.orders))) {
+            returnObject.error = 'Возникла ошибка при запросе заказов. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
             }
             return returnObject;
         }
 
-        returnObject.freelancers = result.response.freelancers;
+        returnObject.orders = result.response.orders;
         return returnObject;
     }
 
-    static async getFreelancer(id) {
+    static async getOrder(id) {
         const returnObject = {
             error: false,
             redirect: null,
-            freelancer: null,
+            order: null,
         };
 
-        const result = await HttpUtils.request('/freelancers/' + id);
+        const result = await HttpUtils.request('/orders/' + id);
 
         if (result.redirect || result.error || !result.response || (result.response && result.response.error)) {
-            returnObject.error = 'Возникла ошибка при запросе фрилансеров. Обратитесь в поддержку';
+            returnObject.error = 'Возникла ошибка при запросе заказа. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
             }
             return returnObject;
         }
 
-        returnObject.freelancer = result.response;
+        returnObject.order = result.response;
         return returnObject;
     }
 
-    static async createFreelancer(data) {
+    static async createOrder(data) {
         const returnObject = {
             error: false,
             redirect: null,
             id: null,
         };
 
-        const result = await HttpUtils.request('/freelancers', "POST", true, data);
+        const result = await HttpUtils.request('/orders', "POST", true, data);
         if (result.redirect || result.error || !result.response || (result.response && result.response.error)) {
-            returnObject.error = 'Возникла ошибка при добавлении фрилансера. Обратитесь в поддержку';
+            returnObject.error = 'Возникла ошибка при добавлении заказа. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
             }
@@ -63,15 +63,15 @@ export class FreelancersService {
         return returnObject;
     }
 
-    static async updateFreelancer(id, data) {
+    static async updateOrder(id, data) {
         const returnObject = {
             error: false,
             redirect: null,
         };
 
-        const result = await HttpUtils.request('/freelancers/' + id, "PUT", true, data);
+        const result = await HttpUtils.request('/orders/' + id, "PUT", true, data);
         if (result.redirect || result.error || !result.response || (result.response && result.response.error)) {
-            returnObject.error = 'Возникла ошибка при редактировании фрилансера. Обратитесь в поддержку';
+            returnObject.error = 'Возникла ошибка при редактировании заказа. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
             }
@@ -81,16 +81,16 @@ export class FreelancersService {
         return returnObject;
     }
 
-    static async deleteFreelancer(id) {
+    static async deleteOrder(id) {
         const returnObject = {
             error: false,
             redirect: null,
         };
 
-        const result = await HttpUtils.request('/freelancers/' + id, "DELETE", true);
+        const result = await HttpUtils.request('/orders/' + id, "DELETE", true);
 
         if (result.redirect || result.error || !result.response || (result.response && result.response.error)) {
-            returnObject.error = 'Возникла ошибка при удалении фрилансера. Обратитесь в поддержку';
+            returnObject.error = 'Возникла ошибка при удалении заказа. Обратитесь в поддержку';
             if (result.redirect) {
                 returnObject.redirect = result.redirect;
             }

@@ -1,6 +1,8 @@
 import {HttpUtils} from "../../utils/http-utils";
 import {ValidationUtils} from "../../utils/validation-utils";
 import {UrlUtils} from "../../utils/url-utils";
+import {FreelancersService} from "../../services/freelancers-service";
+import {OrdersService} from "../../services/orders-services";
 
 export class OrdersEdit {
     constructor(openNewRoute) {
@@ -59,21 +61,18 @@ export class OrdersEdit {
     }
 
     async getFreelancers(currentFreelancerId) {
-        const result = await HttpUtils.request('/freelancers');
-        if (result.redirect) {
-            return this.openNewRoute(result.redirect);
+        const response = await FreelancersService.getFreelancers();
+
+        if (response.error) {
+            alert(response.error);
+            return response.redirect ? this.openNewRoute(response.redirect) : null;
         }
 
-        if (result.error || !result.response || (result.response && (result.response.error || !result.response.freelancers))) {
-            return alert('Возникла ошибка при запросе фрилансеров. Обратитесь в поддержку');
-        }
-
-        const freelancers = result.response.freelancers;
-        for (let i = 0; i < freelancers.length; i++) {
+        for (let i = 0; i < response.freelancers.length; i++) {
             const option = document.createElement("option");
-            option.value = freelancers[i].id;
-            option.innerText = freelancers[i].name + ' ' + freelancers[i].lastName;
-            if (currentFreelancerId === freelancers[i].id) {
+            option.value = response.freelancers[i].id;
+            option.innerText = response.freelancers[i].name + ' ' + response.freelancers[i].lastName;
+            if (currentFreelancerId === response.freelancers[i].id) {
                 option.selected = true;
             }
             this.freelancersSelectElement.appendChild(option);
@@ -165,14 +164,11 @@ export class OrdersEdit {
             }
 
             if (Object.keys(changedData).length > 0) {
-                const result = await HttpUtils.request('/orders/' + this.orderOriginalData.id, "PUT", true, changedData);
-                if (result.redirect) {
-                    return this.openNewRoute(result.redirect);
-                }
+                const response = await OrdersService.updateOrder(this.orderOriginalData.id, changedData);
 
-                if (result.error || !result.response || (result.response && result.response.error)) {
-                    console.log(result.response.message);
-                    return alert('Возникла ошибка при редактировании заказа. Обратитесь в поддержку');
+                if (response.error) {
+                    alert(response.error);
+                    return response.redirect ? this.openNewRoute(response.redirect) : null;
                 }
 
                 return this.openNewRoute("/orders/view?id=" + this.orderOriginalData.id);
