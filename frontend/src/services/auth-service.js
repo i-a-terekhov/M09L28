@@ -11,7 +11,7 @@ export class AuthService {
         return result.response;
     }
     static async singUp(data) {
-        const result = await HttpUtils.request('/sighup', 'POST', false, data);
+        const result = await HttpUtils.request('/signup', 'POST', false, data);
 
         if (result.error || !result.response || (result.response && !result.response.accessToken || !result.response.refreshToken || !result.response.id || !result.response.name)) {
             return false;
